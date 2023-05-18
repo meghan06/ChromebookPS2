@@ -3,10 +3,14 @@ VoodooPS2
 
 [![CI](https://github.com/meghan06/ChromebookPS2/actions/workflows/main.yml/badge.svg)](https://github.com/meghan06/ChromebookPS2/actions/workflows/main.yml)
 
+This is a modified version of VoodooPS2 for Chromebooks running macOS. It enables keyboard backlight control and [maps the top row keys](#keyboard-remaps).
+
 ------------------------------------------------------------------------------------------------------------------------------------
 
 ### Read this:
-**[SSDT-KBBL.aml]() is required for keyboard backlight control.**
+>**Note**: Keyboard backlight can be controlled with `left ctrl` + `left alt` + comma (`,`) and period (`.`) keys.
+
+**[SSDT-KBBL.aml](https://github.com/meghan06/ChromebookPS2/blob/master/Docs/SSDT-KBBL.aml) is required for keyboard backlight control.** 
 
 ------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +27,13 @@ F7 -> Brightness Up
 F8 -> Volume Mute 
 F9 -> Volume Down
 F10 -> Volume Up
+
 ```
+
+#### Things to keep in mind:
+
+- F4 can be mapped to Full Screen in System Preferences -> Keyboard -> Shortcuts -> App Shortcuts.
+- F5 can be mapped to Mission Control in System Preferences -> Keyboard -> Shortcuts -> App Shortcuts.
 
 ------------------------------------------------------------------------------------------------------------------------------------
 
