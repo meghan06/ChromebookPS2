@@ -1,7 +1,7 @@
 VoodooPS2
 =========
 
-[![Build Status](https://github.com/acidanthera/VoodooPS2/workflows/CI/badge.svg?branch=master)](https://github.com/acidanthera/VoodooPS2/actions) [![Scan Status](https://scan.coverity.com/projects/22190/badge.svg?flat=1)](https://scan.coverity.com/projects/22190)
+[![CI](https://github.com/meghan06/ChromebookPS2/actions/workflows/main.yml/badge.svg)](https://github.com/meghan06/ChromebookPS2/actions/workflows/main.yml)
 
 ------------------------------------------------------------------------------------------------------------------------------------
 #### SSDT-KBBL.aml is required for keyboard backlight control.
