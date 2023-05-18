@@ -1,3 +1,5 @@
+// VoodooPS2 modified for top row Chromebook keys
+
 /*
  * Copyright (c) 1998-2000 Apple Computer, Inc. All rights reserved.
  *
@@ -381,9 +383,9 @@ bool ApplePS2Keyboard::start(IOService * provider)
         return false;
     }
     
-    // get IOACPIPlatformDevice for Device (PS2K)
+    // get IOACPIPlatformDevice for Device (KBBL)
     //REVIEW: should really look at the parent chain for IOACPIPlatformDevice instead.
-    _provider = (IOACPIPlatformDevice*)IORegistryEntry::fromPath("IOService:/AppleACPIPlatformExpert/PS2K");
+    _provider = (IOACPIPlatformDevice*)IORegistryEntry::fromPath("IOService:/AppleACPIPlatformExpert/KBBL"); // PS2K -> KBBL
 
     //
     // get keyboard backlight levels for ACPI based backlight keys
@@ -819,7 +821,7 @@ void ApplePS2Keyboard::setParamPropertiesGated(OSDictionary * dict)
     xml = OSDynamicCast(OSBoolean, dict->getObject(kUseISOLayoutKeyboard));
     if (xml) {
         if (xml->isTrue()) {
-            _PS2ToADBMap[0x29]  = _PS2ToADBMapMapped[0x56];     //Europe2 '¤º'
+            _PS2ToADBMap[0x29]  = _PS2ToADBMapMapped[0x56];     //Europe2 'Â¤Âº'
             _PS2ToADBMap[0x56]  = _PS2ToADBMapMapped[0x29];     //Grave '~'
         }
         else {
