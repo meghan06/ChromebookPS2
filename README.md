@@ -11,15 +11,25 @@ VoodooPS2
 ------------------------------------------------------------------------------------------------------------------------------------
 
 ### Keyboard Remaps
+
 F1 -> Previous Song
+
 F2 -> Next Song
+
 F3 -> Play/Pause
+
 F4 -> Fullscreen (Map in SysPrefs)
+
 F5 -> Mission Control (Map in SysPrefs)
+
 F6 -> Brightness Down
+
 F7 -> Brightness Up
+
 F8 -> Volume Mute 
+
 F9 -> Volume Down
+
 F10 -> Volume Up
 
 
