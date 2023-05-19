@@ -384,7 +384,8 @@ bool ApplePS2Keyboard::start(IOService * provider)
     }
     
     // get IOACPIPlatformDevice for Device (KBBL)
-    //REVIEW: should really look at the parent chain for IOACPIPlatformDevice instead.
+    // REVIEW: should really look at the parent chain for IOACPIPlatformDevice instead.
+    // Should really make a SSDT for this instead so it can be upstreamed to VPS2. 
     _provider = (IOACPIPlatformDevice*)IORegistryEntry::fromPath("IOService:/AppleACPIPlatformExpert/KBBL"); // PS2K -> KBBL
 
     //
@@ -1354,7 +1355,7 @@ void ApplePS2Keyboard::modifyKeyboardBacklight(int keyCode, bool goingDown)
         ++index;
     }
     // move to next or previous
-    index += (keyCode == 0x34 ? +1 : -1); // 0x4e -> 0x34
+    index += (keyCode == 0x34 ? +1 : -1); // 0x4e -> 0x34, for KBLT
     if (index >= _backlightCount)
         index = _backlightCount - 1;
     if (index < 0)
@@ -1504,11 +1505,11 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithPacket(const UInt8* packet)
                 return false;
             break;
             
-        case 0x34:  // Numpad+ -> Comma
-        case 0x33:  // Numpad- -> Period
+        case 0x34:  // Numpad+ -> Comma; for KBLT control on Chromebook keyboards.
+        case 0x33:  // Numpad- -> Period; for KBLT control on Chromebook keyboards. 
             if (_backlightLevels && checkModifierState(kMaskLeftControl|kMaskLeftAlt))
             {
-                // Ctrl+Alt+Comma/Period(</>) => use to manipulate keyboard backlight
+                // Ctrl+Alt+Comma/Period(</>) => use to manipulate keyboard backlight. Modified for Chromebook keys.
                 modifyKeyboardBacklight(keyCode, goingDown);
                 keyCode = 0;
             }
@@ -1537,7 +1538,7 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithPacket(const UInt8* packet)
                 keyCode = 0;
                 if (!goingDown)
                 {
-                    // Note: If OS X thinks the Command and Control keys are down at the time of
+                    //  Note: If OS X thinks the Command and Control keys are down at the time of
                     //  receiving an ADB 0x7f (power button), it will unconditionaly and unsafely
                     //  reboot the computer, much like the old PC/AT Ctrl+Alt+Delete!
                     // That's why we make sure Control (0x3b) and Alt (0x37) are up!!
@@ -1723,7 +1724,7 @@ bool ApplePS2Keyboard::dispatchKeyboardEventWithPacket(const UInt8* packet)
     // allow hold Alt+numpad keys to type in arbitrary ADB key code
     static int genADB = -1;
     if (goingDown && checkModifierState(kMaskLeftAlt) &&
-        ((keyCodeRaw >= 0x47 && keyCodeRaw <= 0x52 && keyCodeRaw != 0x4e && keyCodeRaw != 0x4a) ||
+        ((keyCodeRaw >= 0x47 && keyCodeRaw <= 0x52 && keyCodeRaw != 0x4e && keyCodeRaw != 0x4a) || // Modified for Chomebook keyboards
         (keyCodeRaw >= 0x02 && keyCodeRaw <= 0x0B)))
     {
         // map numpad scan codes to digits
