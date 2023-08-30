@@ -5,6 +5,9 @@ VoodooPS2
 
 This is a modified version of VoodooPS2 for Chromebooks running macOS. It enables keyboard backlight control and [remaps the top row keys](#keyboard-remaps) to their intended purpose.
 
+Top row keyboard remapping is also possible via SSDTs. Please see:
+https://github.com/meghan06/croskeyboardutilities
+
 ------------------------------------------------------------------------------------------------------------------------------------
 
 ### Read this:
